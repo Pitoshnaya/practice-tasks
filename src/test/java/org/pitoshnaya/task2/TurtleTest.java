@@ -82,11 +82,30 @@ public class TurtleTest {
         jessy.moveLeft();
         assertTurtleCoordinates(x+2, y+2, jessy);
     }
+
+    @Test
+    public void randomPositionForEachTurtle() {
+        var jessy = new Turtle();
+        var mikki = new Turtle();
+        // Допускаем, что раз в год данные могут и пересечься. Пробуем пересоздать и проверить еще раз
+        if (isInSamePosition(jessy, mikki)) {
+            mikki = new Turtle();
+        }
+
+        assertFalse(isInSamePosition(jessy, mikki), "Черепашка должна каждый раз быть в случайной позиции");
+    }
     
     private void assertTurtleCoordinates(int x, int y, Turtle turtle) {
         var newCoordinates = turtle.getCoordinates();
 
         assertEquals(x, newCoordinates.getX(), "у черепашки координата X не совпадает с ожидаемой");
         assertEquals(y, newCoordinates.getY(), "у черепашки координата Y не совпадает с ожидаемой");
+    }
+
+    private boolean isInSamePosition(Turtle a, Turtle b) {
+        var firstPosition = a.getCoordinates();
+        var secondPosition = b.getCoordinates();
+
+        return firstPosition.getX() == secondPosition.getX() && firstPosition.getY() == secondPosition.getY();
     }
 }
