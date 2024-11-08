@@ -17,7 +17,7 @@ public class DropGenerator {
         items.add("Item4");
         items.add("Item5");
         var randomItem = items.get(generator.nextInt(items.size()));
-        System.out.println(randomItem);
+
 
         return randomItem;
     }
