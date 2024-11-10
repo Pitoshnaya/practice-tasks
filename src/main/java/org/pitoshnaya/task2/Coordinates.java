@@ -1,8 +1,8 @@
 package org.pitoshnaya.task2;
 
 public class Coordinates {
-    int x = 150;
-    int y = 320;
+    int x = 0;
+    int y = 0;
 
     public int getX() {
         return x;
