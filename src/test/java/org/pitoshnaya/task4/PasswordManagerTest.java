@@ -12,6 +12,11 @@ public class PasswordManagerTest {
     private final PasswordManager passwordManager = new PasswordManager();
 
     @Test
+    public void testCheckPasswordForUnknownUser() {
+        assertFalse(passwordManager.checkPassword("Mikey", "qwerty"));
+    }
+
+    @Test
     public void addPasswordWorksWithoutCollisions() throws Exception {
         var fixtures = new HashMap<String, String>() {{
             put("Johhny", "123qwerty");
@@ -52,7 +57,7 @@ public class PasswordManagerTest {
 
 
     @ParameterizedTest
-    @ValueSource(strings = {"", "       "})
+    @ValueSource(strings = {"", "       ", " ", "                                                                   "})
     public void addPasswordValidation(String password) {
         var user = "Minnie";
         Exception e = assertThrows(Exception.class, () -> passwordManager.addPassword(user, password));
